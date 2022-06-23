@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <style>
+        .container{
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        li {
+            list-style: none;
+        }
+        li img {
+            width: 100px;
+            height: 100px;
+            object-fit: cover;
+        }
+    </style>
+    <div class="container"></div>
+    <script>
+        (async ()=> {
+            const response = await fetch('./instagram.json');
+            const data = await response.json();
+
+            const htmlList = data.map(img => {
+                return `
+                    <li>
+                        <img crossorigin="anonymous" src="${img}" >
+                    </li>
+                `;
+            });
+             document.querySelector('.container').innerHTML = htmlList;   
+        })()
+    </script>
+</body>
+</html>
